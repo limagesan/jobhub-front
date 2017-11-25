@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import IssuesList from "./IssuesList";
+import { Grid, Segment, Divider } from "semantic-ui-react";
 import "./Home.css";
 
 const issuesMock = [
@@ -32,18 +33,28 @@ const issuesMock = [
   }
 ];
 
+const languagesMock = ["React", "Rails", "Java", "Python", "Javascrypt"];
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      issues: issuesMock
+      issues: issuesMock,
+      languages: languagesMock
     };
   }
 
-  componentWillMount() {}
+  componentDidMount() {
+    console.log("get", this.props);
+
+    // this.props.api.__proto__.getIssues().then(issues => {});
+  }
 
   goIssueDetailPage(id) {
     this.props.history.push(`/issue/${id}`);
+  }
+
+  filterByLanguage(lang) {
+    console.log("filterd", lang);
   }
 
   render() {
@@ -51,14 +62,44 @@ class Home extends Component {
       <div className="Home">
         <h1>ようこそJobHubへ</h1>
         <div className="main-contents">
-          <IssuesList
-            onClick={this.goIssueDetailPage.bind(this)}
-            issues={this.state.issues}
-          />
+          <Grid>
+            <Grid.Column width={4}>
+              <LanguagesList
+                onClick={this.filterByLanguage.bind(this)}
+                languages={this.state.languages}
+              />
+            </Grid.Column>
+            <Grid.Column width={11}>
+              <h1>依頼案件</h1>
+              <Segment>
+                <IssuesList
+                  onClick={this.goIssueDetailPage.bind(this)}
+                  issues={this.state.issues}
+                />
+              </Segment>
+            </Grid.Column>
+          </Grid>
         </div>
       </div>
     );
   }
 }
+
+const LanguagesList = ({ onClick, languages }) => {
+  const rows = languages.map((language, index) => {
+    let divider = index === languages.length - 1 ? null : <Divider secton />;
+    return (
+      <div
+        onClick={() => {
+          onClick(language);
+        }}
+      >
+        {language}
+        {divider}
+      </div>
+    );
+  });
+  return <Segment>{rows}</Segment>;
+};
 
 export default Home;

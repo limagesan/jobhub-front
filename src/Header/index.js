@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Button, Popup, Grid, Segment, Divider } from "semantic-ui-react";
+import {
+  Button,
+  Popup,
+  Grid,
+  Segment,
+  Divider,
+  Input
+} from "semantic-ui-react";
 import "./Header.css";
 
 class Header extends Component {
@@ -7,6 +14,7 @@ class Header extends Component {
     return (
       <header className="Header">
         <h1>JobHub</h1>
+        <Input icon="search" placeholder="Search..." />
         <Button
           onClick={() => {
             this.props.onClick("/issue/new");

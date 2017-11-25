@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import App from "./App";
+import Api from "./Api";
 
 class Store extends Component {
   constructor() {
@@ -7,6 +8,8 @@ class Store extends Component {
     this.state = {
       logined: false
     };
+    this.api = new Api();
+    console.log("initicalize", this.api);
   }
 
   dispatch(data) {
@@ -16,7 +19,11 @@ class Store extends Component {
   render() {
     return (
       <div>
-        <App state={this.state} setState={this.dispatch.bind(this)} />
+        <App
+          state={this.state}
+          setState={this.dispatch.bind(this)}
+          api={this.api}
+        />
       </div>
     );
   }
