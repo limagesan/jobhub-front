@@ -8,12 +8,25 @@ class MyPage extends Component {
     return (
       <div className="MyPage">
         <h1>MyPage</h1>
+        <Grid>
+        <Grid.Column width={4}>
+          <Segment>
+            クライアント情報
+            <div className="img-container">
+              <img src="https://avatars1.githubusercontent.com/u/16573379?s=460&v=4" />
+            </div>
+            {"limagesan"}
+          </Segment>
+        </Grid.Column>
+        <Grid.Column width={12}>
         <div className="main-contents">
-          <Segment>Challenges</Segment>
+          <h1>Challenges</h1>
           <ChallengesTable />
-          <Segment>Issues</Segment>
+          <h1>Issues</h1>
           <IssuesTable />
         </div>
+        </Grid.Column>
+        </Grid>
       </div>
     );
   }
@@ -80,6 +93,7 @@ const IssuesTable = () => {
         </Table.Row>
       </Table.Body>
     </Table>
+
   );
 };
 

@@ -15,7 +15,6 @@ class Header extends Component {
   render() {
     return (
       <header className="Header">
-        <h1>JobHub</h1>
         <h1
           onClick={() => {
             this.props.onClick("/");
@@ -23,10 +22,11 @@ class Header extends Component {
         >
           JobHub
         </h1>
-        <a href="https://github.com/login/oauth/authorize?client_id=0dc6379899bfb7eda0b0">
+        <nav>
+        <Input icon="search" placeholder="Search..." />
+        <a className="register" href="https://github.com/login/oauth/authorize?client_id=0dc6379899bfb7eda0b0">
           ユーザー登録
         </a>
-        <Input icon="search" placeholder="Search..." />
         <Button className="submit"
           onClick={() => {
             this.props.onClick("/issue/new");
@@ -35,22 +35,17 @@ class Header extends Component {
           依頼する
         </Button>
 
-        <img src={noticeImg} />
-        <img src={humanImg} />
-        <Popup trigger={<Button>Notice</Button>}>
+        <Popup trigger={<div className="noticeimage"><img src={noticeImg} /></div>}>
           あなたのPull Requestが受理されました
           <Divider section />
           あなたのPull Requestが棄却されました
           <Divider section />
           あなたのPull Requestが受理されました
         </Popup>
-        <Button
-          onClick={() => {
-            this.props.onClick("/mypage");
-          }}
-        >
-          Mypage
-        </Button>
+        <a href="/mypage">
+        <div className="humanimage"><img src={humanImg} /></div>
+        </a>
+        </nav>
       </header>
     );
   }

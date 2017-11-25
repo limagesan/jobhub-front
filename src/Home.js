@@ -34,7 +34,7 @@ const issuesMock = [
   }
 ];
 
-const languagesMock = ["React", "Rails", "Java", "Python", "Javascrypt"];
+const languagesMock = ["スキル検索一覧", "React", "Rails", "Java", "Python", "Javascrypt"];
 class Home extends Component {
   constructor() {
     super();
@@ -61,7 +61,11 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <h1>ようこそJobHubへ</h1>
+        <div className="main-visual">
+          <div className="main-visual-left">
+          <h1 className="main-message">働き方が変わる、人生が変わる</h1>
+          </div>
+        </div>
 
         <div className="main-contents">
           <Grid>

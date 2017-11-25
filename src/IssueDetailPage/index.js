@@ -43,7 +43,9 @@ class IssueDetailPage extends Component {
   render() {
     return (
       <div className="IssueDetailPage">
-        <h1>{this.state.issueData.issue.title}</h1>
+        <div className="title">
+          <h1>{this.state.issueData.issue.title}</h1>
+        </div>
         <div className="main-contents">
           <div className="head-contents" />
           <Grid>

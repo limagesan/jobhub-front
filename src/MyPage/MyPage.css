@@ -1,3 +1,7 @@
 .MyPage .main-contents {
   padding: 20px;
 }
+.MyPage .img-container img {
+  width: 120px;
+  height: 120px;
+}
