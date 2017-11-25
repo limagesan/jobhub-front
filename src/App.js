@@ -3,11 +3,12 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import Home from "./Home";
 import MyPage from "./MyPage";
 import PostIssuePage from "./PostIssuePage";
+import IssueDetailPage from "./IssueDetailPage";
 import Header from "./Header";
 
 import "./App.css";
 
-const Routes = withRouter(({ state, setState, history }) => {
+const Routes = withRouter(({ state, setState, history, api, location }) => {
   const handleClick = url => history.push(url);
 
   return (
@@ -15,17 +16,38 @@ const Routes = withRouter(({ state, setState, history }) => {
       <Header onClick={handleClick} />
       <Switch>
         <Route
-          path="/"
-          exact
-          render={() => <Home state={state} setState={setState} />}
-        />
-        <Route
           path="/mypage"
-          render={() => <MyPage state={state} setState={setState} />}
+          render={props => (
+            <MyPage {...props} state={state} setState={setState} api={api} />
+          )}
         />
         <Route
           path="/issue/new"
-          render={() => <PostIssuePage state={state} setStaete={setState} />}
+          render={props => (
+            <PostIssuePage
+              {...props}
+              state={state}
+              setState={setState}
+              api={api}
+            />
+          )}
+        />
+        <Route
+          path="/issue/:id"
+          render={props => (
+            <IssueDetailPage
+              {...props}
+              state={state}
+              setState={setState}
+              api={api}
+            />
+          )}
+        />
+        <Route
+          path="/"
+          render={props => (
+            <Home {...props} state={state} setState={setState} api={api} />
+          )}
         />
       </Switch>
     </div>
@@ -34,9 +56,14 @@ const Routes = withRouter(({ state, setState, history }) => {
 
 class App extends Component {
   render() {
+    console.log("props", this.props);
     return (
       <div className="App">
-        <Routes state={this.props.state} setState={this.props.setState} />
+        <Routes
+          state={this.props.state}
+          setState={this.props.setState}
+          api={this.props.api}
+        />
       </div>
     );
   }
