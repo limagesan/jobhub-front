@@ -1,3 +1,28 @@
 .Header {
-  background-color: ghostwhite;
+  background-color: #fff;
+  height: 80px;
+}
+.Header h1{
+  float: left;
+  padding:25px 10px 10px 20px;
+  margin-left: 50px;
+  color: #2851E8;
+}
+.Header .register{
+  display: inline-block;
+  padding: 10px 20px;
+  color: #2851E8;
+}
+
+.Header .humanimage, .Header .noticeimage{
+  display: inline-block;
+  padding: 20px 10px 0;
+}
+.Header .humanimage img{
+  width: 35px;
+  height: 35px;
+}
+.Header .noticeimage img{
+  width: 35px;
+  height: 35px;
 }

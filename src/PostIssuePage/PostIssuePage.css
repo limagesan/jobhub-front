@@ -1,3 +1,6 @@
 .PostIssuePage .main-contents {
   padding: 20px;
 }
+.PostIssuePage .main-contents Form{
+  padding: 30px;
+}
