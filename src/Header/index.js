@@ -1,19 +1,34 @@
 import React, { Component } from "react";
-import { Button, Popup, Grid, Segment } from "semantic-ui-react";
+import { Button, Popup, Grid, Segment, Search} from "semantic-ui-react";
 import "./Header.css";
+import noticeImg from "../assets/notice.png";
+import humanImg from "../assets/human2.png";
 
 class Header extends Component {
   render() {
     return (
       <header className="Header">
         <h1>JobHub</h1>
-        <Button
+
+        <Grid>
+
+              <Search className="search"
+                onResultSelect={this.handleResultSelect}
+                onSearchChange={this.handleSearchChange}
+                {...this.props}
+              />
+
+        </Grid>
+        <Button className="submit"
           onClick={() => {
             this.props.onClick("/issue/new");
           }}
         >
-          Post Issue
+          依頼する
         </Button>
+
+        <img src={noticeImg} />
+        <img src={humanImg} />
         <Popup trigger={<Button>Notice</Button>}>
           <Grid>
             <Grid.Row>

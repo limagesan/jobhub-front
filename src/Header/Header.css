@@ -1,3 +1,6 @@
 .Header {
-  background-color: ghostwhite;
+  background-color: #2851E8;
+}
+.Header h1, .Header .search{
+  float: left;
 }
