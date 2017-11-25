@@ -22,12 +22,15 @@ class Header extends Component {
         >
           JobHub
         </h1>
-        <nav>
         <Input icon="search" placeholder="Search..." />
-        <a className="register" href="https://github.com/login/oauth/authorize?client_id=0dc6379899bfb7eda0b0">
+        <a
+          className="register"
+          href="https://github.com/login/oauth/authorize?client_id=0dc6379899bfb7eda0b0"
+        >
           ユーザー登録
         </a>
-        <Button className="submit"
+        <Button
+          className="submit"
           onClick={() => {
             this.props.onClick("/issue/new");
           }}
@@ -35,7 +38,13 @@ class Header extends Component {
           依頼する
         </Button>
 
-        <Popup trigger={<div className="noticeimage"><img src={noticeImg} /></div>}>
+        <Popup
+          trigger={
+            <div className="noticeimage">
+              <img src={noticeImg} />
+            </div>
+          }
+        >
           あなたのPull Requestが受理されました
           <Divider section />
           あなたのPull Requestが棄却されました
@@ -43,9 +52,10 @@ class Header extends Component {
           あなたのPull Requestが受理されました
         </Popup>
         <a href="/mypage">
-        <div className="humanimage"><img src={humanImg} /></div>
+          <div className="humanimage">
+            <img src={humanImg} />
+          </div>
         </a>
-        </nav>
       </header>
     );
   }

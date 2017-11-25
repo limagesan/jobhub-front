@@ -70,6 +70,6 @@ export default class Api {
         }
       }
     ];
-    this.mockAPI(issuesMock);
+    return this.mockAPI(issuesMock);
   }
 }

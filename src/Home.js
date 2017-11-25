@@ -4,50 +4,21 @@ import { Grid, Segment, Divider } from "semantic-ui-react";
 import "./Home.css";
 // import soccerImg from "./assets/soccer.jpg";
 
-const issuesMock = [
-  {
-    id: 1,
-    title: "Controllerのここの書き方がわかりません",
-    price: 1000,
-    user: {
-      id: 1,
-      name: "Hiroki"
-    }
-  },
-  {
-    id: 2,
-    title: "Controllerのここの書き方がわかりません",
-    price: 1000,
-    user: {
-      id: 2,
-      name: "Hiroki"
-    }
-  },
-  {
-    id: 3,
-    title: "Controllerのここの書き方がわかりません",
-    price: 1000,
-    user: {
-      id: 3,
-      name: "Hiroki"
-    }
-  }
-];
-
-const languagesMock = ["スキル検索一覧", "React", "Rails", "Java", "Python", "Javascrypt"];
+const languagesMock = ["React", "Rails", "Java", "Python", "Javascrypt"];
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      issues: issuesMock,
+      issues: [],
       languages: languagesMock
     };
   }
 
   componentDidMount() {
-    console.log("get", this.props);
-
-    // this.props.api.__proto__.getIssues().then(issues => {});
+    this.props.api.getIssues().then(issues => {
+      console.log("get", issues);
+      this.setState({ issues });
+    });
   }
 
   goIssueDetailPage(id) {
@@ -63,7 +34,7 @@ class Home extends Component {
       <div className="Home">
         <div className="main-visual">
           <div className="main-visual-left">
-          <h1 className="main-message">働き方が変わる、人生が変わる</h1>
+            <h1 className="main-message">働き方が変わる、人生が変わる</h1>
           </div>
         </div>
 
@@ -93,9 +64,10 @@ class Home extends Component {
 
 const LanguagesList = ({ onClick, languages }) => {
   const rows = languages.map((language, index) => {
-    let divider = index === languages.length - 1 ? null : <Divider secton />;
+    let divider = index === languages.length - 1 ? null : <Divider />;
     return (
       <div
+        key={language}
         onClick={() => {
           onClick(language);
         }}
@@ -105,7 +77,15 @@ const LanguagesList = ({ onClick, languages }) => {
       </div>
     );
   });
-  return <Segment>{rows}</Segment>;
+  return (
+    <Segment>
+      <div>
+        <h4>スキル検索一覧</h4>
+        <Divider />
+      </div>
+      {rows}
+    </Segment>
+  );
 };
 
 export default Home;
