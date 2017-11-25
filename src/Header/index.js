@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Popup, Grid, Segment } from "semantic-ui-react";
+import { Button, Popup, Grid, Segment, Divider } from "semantic-ui-react";
 import "./Header.css";
 
 class Header extends Component {
@@ -15,23 +15,11 @@ class Header extends Component {
           Post Issue
         </Button>
         <Popup trigger={<Button>Notice</Button>}>
-          <Grid>
-            <Grid.Row>
-              <Grid.Column>
-                <Segment>a</Segment>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column>
-                <Segment>a</Segment>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column>
-                <Segment>a</Segment>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+          あなたのPull Requestが受理されました
+          <Divider section />
+          あなたのPull Requestが棄却されました
+          <Divider section />
+          あなたのPull Requestが受理されました
         </Popup>
         <Button
           onClick={() => {
