@@ -13,7 +13,16 @@ class Header extends Component {
   render() {
     return (
       <header className="Header">
-        <h1>JobHub</h1>
+        <h1
+          onClick={() => {
+            this.props.onClick("/");
+          }}
+        >
+          JobHub
+        </h1>
+        <a href="https://github.com/login/oauth/authorize?client_id=0dc6379899bfb7eda0b0">
+          ユーザー登録
+        </a>
         <Input icon="search" placeholder="Search..." />
         <Button
           onClick={() => {

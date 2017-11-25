@@ -8,7 +8,7 @@ import Header from "./Header";
 
 import "./App.css";
 
-const Routes = withRouter(({ state, setState, history, api }) => {
+const Routes = withRouter(({ state, setState, history, api, location }) => {
   const handleClick = url => history.push(url);
 
   return (

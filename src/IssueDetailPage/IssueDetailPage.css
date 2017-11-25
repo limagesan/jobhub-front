@@ -1,3 +1,8 @@
 .IssueDetailPage .main-contents {
   padding: 20px;
 }
+
+.IssueDetailPage .img-container img {
+  width: 120px;
+  height: 120px;
+}
