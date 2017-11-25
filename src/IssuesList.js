@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Label, Table } from "semantic-ui-react";
+import { Table } from "semantic-ui-react";
 class IssuesList extends Component {
   render() {
     return (
