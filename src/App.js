@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import Home from "./Home";
 import MyPage from "./MyPage";
 import PostIssuePage from "./PostIssuePage";
+import IssueDetailPage from "./IssueDetailPage";
 import Header from "./Header";
 
 import "./App.css";
@@ -14,19 +15,16 @@ const Routes = withRouter(({ state, setState, history }) => {
     <div>
       <Header onClick={handleClick} />
       <Switch>
-        <Route
-          path="/"
-          exact
-          render={() => <Home state={state} setState={setState} />}
-        />
-        <Route
-          path="/mypage"
-          render={() => <MyPage state={state} setState={setState} />}
-        />
+        <Route path="/mypage" render={props => <MyPage {...props} />} />
         <Route
           path="/issue/new"
-          render={() => <PostIssuePage state={state} setStaete={setState} />}
+          render={props => <PostIssuePage {...props} />}
         />
+        <Route
+          path="/issue/:id"
+          render={props => <IssueDetailPage {...props} />}
+        />
+        <Route path="/" render={props => <Home {...props} />} />
       </Switch>
     </div>
   );
