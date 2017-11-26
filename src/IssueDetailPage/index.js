@@ -4,9 +4,9 @@ import "./IssueDetailPage.css";
 
 const IssueMock = {
   issue: {
-    title: "Ruby help!",
+    title: "Ruby on rails help!",
     price: 1000,
-    detail: "Rubyについてです。助けてください",
+    detail: "Ruby on railsで簡単な案件をしてくれる人を募集しています。",
     repository_url: "https://github.com/takahashi/jobhub",
     issue_url: "https://github.com/takahashi/jobhub/issues/1"
   },
@@ -61,23 +61,24 @@ class IssueDetailPage extends Component {
             <Grid.Column width={12}>
               <Segment>
                 <h2>依頼案件</h2>
-                <p>詳細</p>
+                <Segment>詳細</Segment>
                 {this.state.issueData.issue.detail}
                 <List>
                   <List.Item>
-                    Repository URL:{" "}
+                    <Segment>Repository URL</Segment>{" "}
                     <a href={this.state.issueData.issue.repository_url}>
                       {this.state.issueData.issue.repository_url}
                     </a>
                   </List.Item>
                   <List.Item>
-                    Issue URL:{" "}
+                    <Segment>Issue URL</Segment>{" "}
                     <a href={this.state.issueData.issue.issue_url}>
                       {this.state.issueData.issue.issue_url}
                     </a>
                   </List.Item>
                   <List.Item>
-                    Price: {this.state.issueData.issue.price}
+                    <Segment>Price</Segment>
+                    {this.state.issueData.issue.price}
                   </List.Item>
                 </List>
                 <Button color="yellow" onClick={this.challenge.bind(this)}>
