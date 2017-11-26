@@ -32,7 +32,7 @@ class Header extends Component {
         <Button
           className="submit"
           onClick={() => {
-            this.props.onClick("/issuesnew");
+            this.props.onClick("/issues/new");
           }}
         >
           依頼する

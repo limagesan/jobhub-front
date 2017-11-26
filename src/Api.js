@@ -10,6 +10,7 @@ export default class Api {
     //   this.port = 443;
     // }
     // console.log(this.baseUrl, process.env);
+    this.baseUrl = "https://jobhub2017.herokuapp.com";
   }
 
   handleError(e) {
@@ -78,41 +79,41 @@ export default class Api {
     });
   }
   getIssues() {
-    // return axios
-    //   .get(`${this.baseUrl}:${this.port}/issues`)
-    //   .then(res => {
-    //     return res;
-    //   })
-    //   .catch(this.handleError);
-    const issuesMock = [
-      {
-        id: 1,
-        title: "Controllerのここの書き方がわかりません",
-        cost: 1000,
-        user: {
-          id: 1,
-          name: "Hiroki"
-        }
-      },
-      {
-        id: 2,
-        title: "Controllerのここの書き方がわかりません",
-        cost: 1000,
-        user: {
-          id: 2,
-          name: "Hiroki"
-        }
-      },
-      {
-        id: 3,
-        title: "Controllerのここの書き方がわかりません",
-        cost: 1000,
-        user: {
-          id: 3,
-          name: "Hiroki"
-        }
-      }
-    ];
-    return this.mockAPI(issuesMock);
+    return axios
+      .get(`${this.baseUrl}/dashboard`)
+      .then(res => {
+        return res;
+      })
+      .catch(this.handleError);
+    // const issuesMock = [
+    //   {
+    //     id: 1,
+    //     title: "Controllerのここの書き方がわかりません",
+    //     cost: 1000,
+    //     user: {
+    //       id: 1,
+    //       name: "Hiroki"
+    //     }
+    //   },
+    //   {
+    //     id: 2,
+    //     title: "Controllerのここの書き方がわかりません",
+    //     cost: 1000,
+    //     user: {
+    //       id: 2,
+    //       name: "Hiroki"
+    //     }
+    //   },
+    //   {
+    //     id: 3,
+    //     title: "Controllerのここの書き方がわかりません",
+    //     cost: 1000,
+    //     user: {
+    //       id: 3,
+    //       name: "Hiroki"
+    //     }
+    //   }
+    // ];
+    // return this.mockAPI(issuesMock);
   }
 }

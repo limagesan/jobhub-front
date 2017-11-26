@@ -22,7 +22,7 @@ class Home extends Component {
   }
 
   goIssueDetailPage(id) {
-    this.props.history.push(`/issue/${id}`);
+    this.props.history.push(`/issues/${id}`);
   }
 
   filterByLanguage(lang) {
