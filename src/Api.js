@@ -34,6 +34,49 @@ export default class Api {
       .catch(this.handleError);
   }
 
+  getMypage() {
+    // return axios
+    //   .get(`${this.baseUrl}:${this.port}/mypage`)
+    //   .then(res => {
+    //     return res;
+    //   })
+    //   .catch(this.handleError);
+    const mypageMock = {
+      user: {
+        name: "takahashi",
+        id: 1
+      },
+      challenges: [
+        {
+          status: "challenging",
+          issue: {
+            title: "Controllerのここの書き方がわかりません",
+            cost: 1000,
+            issue_id: 1,
+            owner_name: "kimu"
+          },
+          detail: "頑張りました",
+          pull_request_url: "https://github.com/takahashi/test-repo/pull/2"
+        }
+      ],
+      issues: [
+        {
+          id: 1,
+          title: "Ruby help!",
+          cost: 1000,
+          status: "open"
+        }
+      ]
+    };
+    return this.mockAPI(mypageMock);
+  }
+  login() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+  }
   getIssues() {
     // return axios
     //   .get(`${this.baseUrl}:${this.port}/issues`)
@@ -45,7 +88,7 @@ export default class Api {
       {
         id: 1,
         title: "Controllerのここの書き方がわかりません",
-        price: 1000,
+        cost: 1000,
         user: {
           id: 1,
           name: "Hiroki"
@@ -54,7 +97,7 @@ export default class Api {
       {
         id: 2,
         title: "Controllerのここの書き方がわかりません",
-        price: 1000,
+        cost: 1000,
         user: {
           id: 2,
           name: "Hiroki"
@@ -63,7 +106,7 @@ export default class Api {
       {
         id: 3,
         title: "Controllerのここの書き方がわかりません",
-        price: 1000,
+        cost: 1000,
         user: {
           id: 3,
           name: "Hiroki"

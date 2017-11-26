@@ -4,35 +4,73 @@ import { Table, Grid, Segment } from "semantic-ui-react";
 import "./MyPage.css";
 
 class MyPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      challenges: [],
+      issues: []
+    };
+  }
+  componentWillMount() {
+    this.props.api.getMypage().then(res => {
+      console.log("res getMypage", res);
+      const challenges = res.challenges;
+      const issues = res.issues;
+      this.setState({ challenges, issues });
+    });
+  }
+
+  goIssueDetailPage(id) {
+    this.props.history.push(`/issues${id}`);
+  }
+
   render() {
     return (
       <div className="MyPage">
         <h1>MyPage</h1>
         <Grid>
-        <Grid.Column width={4}>
-          <Segment>
-            クライアント情報
-            <div className="img-container">
-              <img src="https://avatars1.githubusercontent.com/u/16573379?s=460&v=4" />
+          <Grid.Column width={4}>
+            <Segment>
+              クライアント情報
+              <div className="img-container">
+                <img src="https://avatars1.githubusercontent.com/u/16573379?s=460&v=4" />
+              </div>
+              {"limagesan"}
+            </Segment>
+          </Grid.Column>
+          <Grid.Column width={12}>
+            <div className="main-contents">
+              <h1>Challenges</h1>
+              <ChallengesTable
+                onClick={this.goIssueDetailPage.bind(this)}
+                challenges={this.state.challenges}
+              />
+              <h1>Issues</h1>
+              <IssuesTable
+                onClick={this.goIssueDetailPage.bind(this)}
+                issues={this.state.issues}
+              />
             </div>
-            {"limagesan"}
-          </Segment>
-        </Grid.Column>
-        <Grid.Column width={12}>
-        <div className="main-contents">
-          <h1>Challenges</h1>
-          <ChallengesTable />
-          <h1>Issues</h1>
-          <IssuesTable />
-        </div>
-        </Grid.Column>
+          </Grid.Column>
         </Grid>
       </div>
     );
   }
 }
 
-const ChallengesTable = () => {
+const ChallengesTable = ({ challenges, onClick }) => {
+  const rows = challenges.map(challenge => (
+    <Table.Row
+      key={challenge.issue.title}
+      onClick={() => {
+        onClick(challenge.issue.issue_id);
+      }}
+    >
+      <Table.Cell>{challenge.issue.title}</Table.Cell>
+      <Table.Cell>{challenge.issue.cost}</Table.Cell>
+      <Table.Cell>{challenge.status}</Table.Cell>
+    </Table.Row>
+  ));
   return (
     <Table celled>
       <Table.Header>
@@ -44,16 +82,7 @@ const ChallengesTable = () => {
       </Table.Header>
 
       <Table.Body>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
+        {rows}
         <Table.Row>
           <Table.Cell>Cell</Table.Cell>
           <Table.Cell>Cell</Table.Cell>
@@ -64,7 +93,19 @@ const ChallengesTable = () => {
   );
 };
 
-const IssuesTable = () => {
+const IssuesTable = ({ issues, onClick }) => {
+  const rows = issues.map(issue => (
+    <Table.Row
+      key={issue.title}
+      onClick={() => {
+        onClick(issue.id);
+      }}
+    >
+      <Table.Cell>{issue.title}</Table.Cell>
+      <Table.Cell>{issue.cost}</Table.Cell>
+      <Table.Cell>{issue.status}</Table.Cell>
+    </Table.Row>
+  ));
   return (
     <Table celled>
       <Table.Header>
@@ -76,16 +117,7 @@ const IssuesTable = () => {
       </Table.Header>
 
       <Table.Body>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
+        {rows}
         <Table.Row>
           <Table.Cell>Cell</Table.Cell>
           <Table.Cell>Cell</Table.Cell>
@@ -93,7 +125,6 @@ const IssuesTable = () => {
         </Table.Row>
       </Table.Body>
     </Table>
-
   );
 };
 

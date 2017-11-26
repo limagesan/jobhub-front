@@ -5,7 +5,7 @@ import "./IssueDetailPage.css";
 const IssueMock = {
   issue: {
     title: "Ruby help!",
-    price: 1000,
+    cost: 1000,
     detail: "Rubyについてです。助けてください",
     repository_url: "https://github.com/takahashi/jobhub",
     issue_url: "https://github.com/takahashi/jobhub/issues/1"
@@ -76,9 +76,7 @@ class IssueDetailPage extends Component {
                       {this.state.issueData.issue.issue_url}
                     </a>
                   </List.Item>
-                  <List.Item>
-                    Price: {this.state.issueData.issue.price}
-                  </List.Item>
+                  <List.Item>cost: {this.state.issueData.issue.cost}</List.Item>
                 </List>
                 <Button color="yellow" onClick={this.challenge.bind(this)}>
                   挑戦

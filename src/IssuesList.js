@@ -12,7 +12,7 @@ const IssuesList = ({ onClick, issues }) => {
         {issue.user.name}
       </Table.Cell>
       <Table.Cell>{issue.title}</Table.Cell>
-      <Table.Cell>{issue.price}</Table.Cell>
+      <Table.Cell>{issue.cost}</Table.Cell>
     </Table.Row>
   ));
   return (

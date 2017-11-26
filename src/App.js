@@ -5,6 +5,7 @@ import MyPage from "./MyPage";
 import PostIssuePage from "./PostIssuePage";
 import IssueDetailPage from "./IssueDetailPage";
 import Header from "./Header";
+import Login from "./Login";
 
 import "./App.css";
 
@@ -22,7 +23,7 @@ const Routes = withRouter(({ state, setState, history, api, location }) => {
           )}
         />
         <Route
-          path="/issue/new"
+          path="/issues/new"
           render={props => (
             <PostIssuePage
               {...props}
@@ -33,7 +34,7 @@ const Routes = withRouter(({ state, setState, history, api, location }) => {
           )}
         />
         <Route
-          path="/issue/:id"
+          path="/issues/:id"
           render={props => (
             <IssueDetailPage
               {...props}
@@ -41,6 +42,12 @@ const Routes = withRouter(({ state, setState, history, api, location }) => {
               setState={setState}
               api={api}
             />
+          )}
+        />
+        <Route
+          path="/login"
+          render={props => (
+            <Login {...props} state={state} setState={setState} api={api} />
           )}
         />
         <Route
