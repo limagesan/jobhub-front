@@ -1,18 +1,29 @@
 import React, { Component } from "react";
-import { Table } from "semantic-ui-react";
+import { Table, Divider, Label } from "semantic-ui-react";
 import "./IssuesList.css";
 
 const IssuesList = ({ onClick, issues }) => {
   const rows = issues.map(issue => (
-    <Table.Row onClick={() => onClick(issue.id)} key={issue.id}>
+    <Table.Row key={issue.id}>
       <Table.Cell>
         <div className="img-container">
           <img src="https://avatars1.githubusercontent.com/u/16573379?s=460&v=4" />
         </div>
         {issue.user.name}
       </Table.Cell>
-      <Table.Cell>{issue.title}</Table.Cell>
-      <Table.Cell>{issue.cost}</Table.Cell>
+      <Table.Cell>
+        <div className="cell-title">
+          <h5>タイトル</h5>
+        </div>
+        <div className="cell-body">
+          <a href={`/issues/${issue.id}`}>{issue.title}</a>
+        </div>
+      </Table.Cell>
+      <Table.Cell>
+        <p>報酬額</p>
+        <Divider />
+        {issue.cost}円
+      </Table.Cell>
     </Table.Row>
   ));
   return (

@@ -10,6 +10,23 @@
   padding: 10px;
 }
 
+.IssuesList .ui.celled.table tr th {
+  padding: 1px;
+}
+
+.IssuesList .cell-title {
+  border-bottom: 1px solid grey;
+  height: 20px;
+}
+
+.IssuesList .cell-body {
+  height: 50px;
+}
+
+.IssuesList a {
+  color: #7399b7;
+}
+
 .IssuesList .img-container img {
   width: 50px;
   height: 50px;

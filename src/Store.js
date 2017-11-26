@@ -18,7 +18,7 @@ class Store extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <App
           state={this.state}
           setState={this.dispatch.bind(this)}

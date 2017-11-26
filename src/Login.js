@@ -10,11 +10,15 @@ class Login extends Component {
   }
 
   componentWillMount() {
-    this.props.api.login().then(() => {
+    let accessToken = this.props.location.search;
+    accessToken = accessToken.replace(/\?code=/g, "");
+
+    console.log("location", this.props.location, accessToken);
+    this.props.api.login(accessToken).then(res => {
+      console.log("res login", res);
+      localStorage.setItem("token", res.data.access_token);
       this.setState({ loading: false });
-      setTimeout(() => {
-        this.props.history.push("/");
-      }, 1000);
+      this.props.history.push("/");
     });
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import IssuesList from "./IssuesList";
-import { Grid, Segment, Divider } from "semantic-ui-react";
+import { Grid, Segment, Divider, Loader } from "semantic-ui-react";
 import "./Home.css";
 // import soccerImg from "./assets/soccer.jpg";
 
@@ -15,10 +15,16 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.api.getIssues().then(issues => {
-      console.log("get", issues);
-      this.setState({ issues });
-    });
+    this.props.api
+      .getIssues()
+      .then(res => {
+        console.log("res dashboard", res);
+        if (res.data.message === "invalid access token") return;
+        this.setState({ issues: res.data.issues });
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   goIssueDetailPage(id) {
@@ -47,12 +53,16 @@ class Home extends Component {
               />
             </Grid.Column>
             <Grid.Column width={11}>
-              <h1>依頼案件</h1>
+              <h1 className="title">依頼案件</h1>
               <Segment>
-                <IssuesList
-                  onClick={this.goIssueDetailPage.bind(this)}
-                  issues={this.state.issues}
-                />
+                {this.state.issues.length ? (
+                  <IssuesList
+                    onClick={this.goIssueDetailPage.bind(this)}
+                    issues={this.state.issues}
+                  />
+                ) : (
+                  <Loader active={!this.state.issues.length} />
+                )}
               </Segment>
             </Grid.Column>
           </Grid>

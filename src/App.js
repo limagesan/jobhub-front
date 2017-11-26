@@ -13,7 +13,7 @@ const Routes = withRouter(({ state, setState, history, api, location }) => {
   const handleClick = url => history.push(url);
 
   return (
-    <div>
+    <div className="main-container">
       <Header onClick={handleClick} />
       <Switch>
         <Route

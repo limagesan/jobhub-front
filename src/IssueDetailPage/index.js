@@ -39,7 +39,12 @@ class IssueDetailPage extends Component {
     this.setState({ completed: true });
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    this.props.api.getIssueDetail(this.state.issueId).then(res => {
+      console.log("res getIssueDetail", res);
+      // this.setState({ issueData: res });
+    });
+  }
   render() {
     return (
       <div className="IssueDetailPage">

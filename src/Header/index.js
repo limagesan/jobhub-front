@@ -31,6 +31,7 @@ class Header extends Component {
         </a>
         <Button
           className="submit"
+          color="blue"
           onClick={() => {
             this.props.onClick("/issues/new");
           }}
@@ -51,11 +52,14 @@ class Header extends Component {
           <Divider section />
           あなたのPull Requestが受理されました
         </Popup>
-        <a href="/mypage">
-          <div className="humanimage">
-            <img src={humanImg} />
-          </div>
-        </a>
+        <div
+          className="humanimage"
+          onClick={() => {
+            this.props.onClick("/mypage");
+          }}
+        >
+          <img src={humanImg} />
+        </div>
       </header>
     );
   }

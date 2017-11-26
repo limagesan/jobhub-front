@@ -11,6 +11,11 @@ export default class Api {
     // }
     // console.log(this.baseUrl, process.env);
     this.baseUrl = "https://jobhub2017.herokuapp.com";
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "token"
+    );
+    this.clientId = "0dc6379899bfb7eda0b0";
+    this.clientSecret = "9070c0b950f0a3e4b24ca68863a71e9506fa46a1";
   }
 
   handleError(e) {
@@ -26,9 +31,9 @@ export default class Api {
     });
   }
 
-  battle(userId) {
+  login(code) {
     return axios
-      .post(`${this.baseUrl}:${this.port}/battle`, { id: userId })
+      .post(`${this.baseUrl}/users`, { code })
       .then(res => {
         return res;
       })
@@ -71,13 +76,16 @@ export default class Api {
     };
     return this.mockAPI(mypageMock);
   }
-  login() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-      }, 1000);
-    });
+
+  getIssueDetail(id) {
+    return axios
+      .get(`${this.baseUrl}/issues/${id}`)
+      .then(res => {
+        return res;
+      })
+      .catch(this.handleError);
   }
+
   getIssues() {
     return axios
       .get(`${this.baseUrl}/dashboard`)
