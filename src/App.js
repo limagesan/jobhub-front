@@ -57,6 +57,10 @@ const Routes = withRouter(({ state, setState, history, api, location }) => {
           )}
         />
       </Switch>
+      <footer>
+        
+        <p>Copyright © jobhub, Inc.  All Rights Reserved.</p>
+      </footer>
     </div>
   );
 });
