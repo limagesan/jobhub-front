@@ -47,10 +47,6 @@ class Header extends Component {
           }
         >
           あなたのPull Requestが受理されました
-          <Divider section />
-          あなたのPull Requestが棄却されました
-          <Divider section />
-          あなたのPull Requestが受理されました
         </Popup>
         <div
           className="humanimage"

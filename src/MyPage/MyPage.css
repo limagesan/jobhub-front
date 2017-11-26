@@ -5,3 +5,22 @@
   width: 120px;
   height: 120px;
 }
+
+.accepted {
+  color: green;
+}
+
+.MyPage h5 {
+  margin: 10px;
+}
+.MyPage h3.title {
+  padding: 0.25em 0.5em;
+  /*上下 左右の余白*/
+  color: #494949;
+  /*文字色*/
+  background: transparent;
+  /*背景透明に*/
+  border-left: solid 5px #7db4e6;
+  /*左線*/
+  text-align: left;
+}

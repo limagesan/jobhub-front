@@ -33,6 +33,9 @@ class IssueDetailPage extends Component {
 
   challenge() {
     this.setState({ challenged: true });
+    this.props.api.challenge(this.state.issueId).then(res => {
+      console.log("res challenge", res);
+    });
   }
 
   complete() {

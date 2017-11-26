@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Grid, Segment } from "semantic-ui-react";
+import { Table, Grid, Segment, Icon } from "semantic-ui-react";
 
 import "./MyPage.css";
 
@@ -8,26 +8,33 @@ class MyPage extends Component {
     super();
     this.state = {
       challenges: [],
-      issues: []
+      issues: [],
+      earnSum: 0
     };
   }
   componentWillMount() {
     this.props.api.getMypage().then(res => {
       console.log("res getMypage", res);
-      const challenges = res.challenges;
-      const issues = res.issues;
-      this.setState({ challenges, issues });
+      const challenges = res.data.challenges || [];
+      const issues = res.data.issues || [];
+
+      let earnSum = 0;
+      for (let i = 0; i < challenges.length; i++) {
+        if (challenges[i].status === "accepted") {
+          earnSum += challenges[i].cost;
+        }
+      }
+      this.setState({ challenges, issues, earnSum });
     });
   }
 
   goIssueDetailPage(id) {
-    this.props.history.push(`/issues${id}`);
+    this.props.history.push(`/issues/${id}`);
   }
 
   render() {
     return (
       <div className="MyPage">
-        <h1>MyPage</h1>
         <Grid>
           <Grid.Column width={4}>
             <Segment>
@@ -39,13 +46,17 @@ class MyPage extends Component {
             </Segment>
           </Grid.Column>
           <Grid.Column width={12}>
+            <Segment>
+              <h3 className="title">現在の報酬額</h3>
+              {this.state.earnSum} 円
+            </Segment>
             <div className="main-contents">
-              <h1>Challenges</h1>
+              <h3 className="title">チャレンジしたIssue</h3>
               <ChallengesTable
                 onClick={this.goIssueDetailPage.bind(this)}
                 challenges={this.state.challenges}
               />
-              <h1>Issues</h1>
+              <h3 className="title">投稿したIssue</h3>
               <IssuesTable
                 onClick={this.goIssueDetailPage.bind(this)}
                 issues={this.state.issues}
@@ -63,12 +74,22 @@ const ChallengesTable = ({ challenges, onClick }) => {
     <Table.Row
       key={challenge.issue.title}
       onClick={() => {
-        onClick(challenge.issue.issue_id);
+        onClick(challenge.issue.id);
       }}
     >
       <Table.Cell>{challenge.issue.title}</Table.Cell>
       <Table.Cell>{challenge.issue.cost}</Table.Cell>
-      <Table.Cell>{challenge.status}</Table.Cell>
+      <Table.Cell>
+        {challenge.status === "accepted" ? (
+          <div className="accepted">
+            {challenge.status} <Icon name="thumbs outline up" />
+          </div>
+        ) : (
+          <div>
+            {challenge.status} <Icon name="wait" />
+          </div>
+        )}
+      </Table.Cell>
     </Table.Row>
   ));
   return (
@@ -80,14 +101,8 @@ const ChallengesTable = ({ challenges, onClick }) => {
           <Table.HeaderCell>ステータス</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
-
       <Table.Body>
-        {rows}
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
+        {rows.length ? rows : <h5>チャレンジしたIssueはありません</h5>}
       </Table.Body>
     </Table>
   );
@@ -116,14 +131,7 @@ const IssuesTable = ({ issues, onClick }) => {
         </Table.Row>
       </Table.Header>
 
-      <Table.Body>
-        {rows}
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
-      </Table.Body>
+      <Table.Body>{rows.length ? rows : <h5>投稿したIssueはありません</h5>}</Table.Body>
     </Table>
   );
 };

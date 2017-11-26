@@ -31,6 +31,14 @@ export default class Api {
     });
   }
 
+  challenge(issue_id) {
+    return axios
+      .post(`${this.baseUrl}/challenges`, { issue_id })
+      .then(res => {
+        return res;
+      })
+      .catch(this.handleError);
+  }
   login(code) {
     return axios
       .post(`${this.baseUrl}/users`, { code })
@@ -41,40 +49,40 @@ export default class Api {
   }
 
   getMypage() {
-    // return axios
-    //   .get(`${this.baseUrl}:${this.port}/mypage`)
-    //   .then(res => {
-    //     return res;
-    //   })
-    //   .catch(this.handleError);
-    const mypageMock = {
-      user: {
-        name: "takahashi",
-        id: 1
-      },
-      challenges: [
-        {
-          status: "challenging",
-          issue: {
-            title: "Controllerのここの書き方がわかりません",
-            cost: 1000,
-            issue_id: 1,
-            owner_name: "kimu"
-          },
-          detail: "頑張りました",
-          pull_request_url: "https://github.com/takahashi/test-repo/pull/2"
-        }
-      ],
-      issues: [
-        {
-          id: 1,
-          title: "Ruby help!",
-          cost: 1000,
-          status: "open"
-        }
-      ]
-    };
-    return this.mockAPI(mypageMock);
+    return axios
+      .get(`${this.baseUrl}/mypage`)
+      .then(res => {
+        return res;
+      })
+      .catch(this.handleError);
+    // const mypageMock = {
+    //   user: {
+    //     name: "takahashi",
+    //     id: 1
+    //   },
+    //   challenges: [
+    //     {
+    //       status: "challenging",
+    //       issue: {
+    //         title: "Controllerのここの書き方がわかりません",
+    //         cost: 1000,
+    //         issue_id: 1,
+    //         owner_name: "kimu"
+    //       },
+    //       detail: "頑張りました",
+    //       pull_request_url: "https://github.com/takahashi/test-repo/pull/2"
+    //     }
+    //   ],
+    //   issues: [
+    //     {
+    //       id: 1,
+    //       title: "Ruby help!",
+    //       cost: 1000,
+    //       status: "open"
+    //     }
+    //   ]
+    // };
+    // return this.mockAPI(mypageMock);
   }
 
   getIssueDetail(id) {
